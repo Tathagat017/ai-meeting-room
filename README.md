@@ -14,6 +14,11 @@ Task list management ( edit : mark as completed, delete, drag and drop to change
 Transcript based task generation , upload audio to generate , record audio to generate
 ![image](https://github.com/user-attachments/assets/fb783e88-f92e-490f-a09d-276552aea14d)
 
+Responsive :
+
+![image](https://github.com/user-attachments/assets/fb488776-c8b2-457c-b211-c6c3a80f22f0)
+
+
 ## Features
 
 ### Task Management
@@ -43,7 +48,7 @@ Transcript based task generation , upload audio to generate , record audio to ge
 - Special time markers (EOD, EOW, End of month, etc.)
 
 ### User Interface
-
+- Responsive for desktop,mobile  views
 - Modern, responsive design
 - Glass-morphism UI effects
 - Helpful tooltips for date/time formats
