@@ -2,6 +2,13 @@
 
 A modern task management application that can parse natural language text and meeting transcripts to create structured tasks. The app supports voice recording, audio file uploads, and intelligent task parsing with timezone awareness (IST).
 
+![image](https://github.com/user-attachments/assets/c23338fe-57c9-422a-8f43-7dfe8ebd8644)
+
+![image](https://github.com/user-attachments/assets/de8119f0-f54a-4b57-af34-ad9e6b22e81c)
+
+![image](https://github.com/user-attachments/assets/fb783e88-f92e-490f-a09d-276552aea14d)
+
+
 ## Features
 
 ### Task Management
