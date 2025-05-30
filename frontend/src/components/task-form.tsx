@@ -46,6 +46,7 @@ export const TaskForm = observer(() => {
     try {
       await taskStore.acceptParsedTask(task);
       setInput("");
+      await taskStore.getTasks();
       notifications.show({
         title: "Task accepted",
         message: "Task accepted successfully",
@@ -162,34 +163,61 @@ export const TaskForm = observer(() => {
         className="custom-scroll"
       >
         {taskStore.ParsedIndividualTasks.map((task, index) => (
-          <Paper
-            key={index}
-            p="md"
-            withBorder
-            style={{ backgroundColor: "#f8f9fa", marginBottom: "1rem" }}
-            className="task-item"
-          >
-            <Stack className="task-item-content">
-              <Text size="sm" fw={500}>
-                Generated Task Details:
-              </Text>
-              <Text size="sm">Description: {task?.description}</Text>
-              <Text size="sm">Assignee: {task.assignee}</Text>
-              <Text size="sm">Due Date: {formatDate(task.dueDate)}</Text>
-              <Text size="sm">Priority: {task.priority || "P3"}</Text>
-              <Group className="task-form-buttons">
+          <Paper key={index} withBorder style={{ backgroundColor: "#f8f9fa" }}>
+            <div className="generated-task-details">
+              <div className="generated-task-info">
+                <div className="generated-task-field description">
+                  <Text size="sm" c="dimmed">
+                    Description
+                  </Text>
+                  <Text size="sm" fw={500}>
+                    {task.description}
+                  </Text>
+                </div>
+                <div className="generated-task-field">
+                  <Text size="sm" c="dimmed">
+                    Assignee
+                  </Text>
+                  <Text size="sm" fw={500}>
+                    {task.assignee}
+                  </Text>
+                </div>
+                <div className="generated-task-field">
+                  <Text size="sm" c="dimmed">
+                    Due Date
+                  </Text>
+                  <Text size="sm" fw={500}>
+                    {formatDate(task.dueDate)}
+                  </Text>
+                </div>
+                <div className="generated-task-field">
+                  <Text size="sm" c="dimmed">
+                    Priority
+                  </Text>
+                  <Text size="sm" fw={500}>
+                    {task.priority || "P3"}
+                  </Text>
+                </div>
+              </div>
+              <div className="generated-task-actions">
                 <Button
                   onClick={() => handleAccept(task)}
                   loading={loading}
                   color="green"
+                  size="sm"
                 >
                   Add Task
                 </Button>
-                <Button onClick={handleReject} variant="light" color="red">
+                <Button
+                  onClick={handleReject}
+                  variant="light"
+                  color="red"
+                  size="sm"
+                >
                   Reject task
                 </Button>
-              </Group>
-            </Stack>
+              </div>
+            </div>
           </Paper>
         ))}
       </Box>

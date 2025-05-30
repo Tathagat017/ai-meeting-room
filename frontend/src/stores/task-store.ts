@@ -92,6 +92,7 @@ export class TaskStore {
         this.parsedIndividualTasks = this.parsedIndividualTasks.filter(
           (t) => t !== task
         );
+        this.getTasks();
       });
     } catch (error) {
       console.error("Error accepting parsed task:", error);
@@ -110,7 +111,9 @@ export class TaskStore {
 
       runInAction(() => {
         this.tasks.push(response.data);
+        this.tasks = [...this.tasks];
         this.queryClient.invalidateQueries({ queryKey: ["tasks"] });
+        this.tasksLoaded = false;
       });
 
       return response.data;

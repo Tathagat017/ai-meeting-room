@@ -125,19 +125,20 @@ export const TaskItem = observer(
           style={style}
           className="task-item"
         >
-          <Stack>
-            <Group
-              style={{ justifyContent: "space-between" }}
-              className="task-item-content"
-            >
-              <Group>
-                <div {...attributes} {...listeners} style={{ cursor: "grab" }}>
-                  <FontAwesomeIcon icon={faGripVertical} />
-                </div>
+          <Group className="task-item-content">
+            <div className="task-item-header">
+              <div
+                {...attributes}
+                {...listeners}
+                style={{ cursor: "grab" }}
+                className="task-item-drag"
+              >
+                <FontAwesomeIcon icon={faGripVertical} size="sm" />
+              </div>
+
+              <div className="task-item-checkbox">
                 {isLoading ? (
-                  <div style={{ display: "flex", alignItems: "center" }}>
-                    <Loader size="xs" />
-                  </div>
+                  <Loader size="xs" />
                 ) : (
                   <Checkbox
                     size="xs"
@@ -147,30 +148,35 @@ export const TaskItem = observer(
                     }}
                   />
                 )}
-                <div>
-                  <Highlight
-                    highlight={searchQuery}
-                    size="sm"
-                    highlightStyles={{ backgroundColor: "#ffe066" }}
-                  >
-                    {task.description}
-                  </Highlight>
-                  <Group spacing="xs">
-                    <Text size="xs" c="dimmed">
-                      Assigned to:
-                    </Text>
-                    <Highlight
-                      size="xs"
-                      c="indigo.6"
-                      highlight={searchQuery}
-                      highlightStyles={{ backgroundColor: "#ffe066" }}
-                    >
-                      {task.assignee}
-                    </Highlight>
-                  </Group>
-                </div>
+              </div>
+
+              <div className="task-item-main">
+                <Highlight
+                  highlight={searchQuery}
+                  size="sm"
+                  highlightStyles={{ backgroundColor: "#ffe066" }}
+                >
+                  {task.description}
+                </Highlight>
+              </div>
+            </div>
+
+            <div className="task-item-details">
+              <Group spacing="xs" className="task-item-assignee">
+                <Text size="xs" c="dimmed">
+                  Assigned to:
+                </Text>
+                <Highlight
+                  size="xs"
+                  c="indigo.6"
+                  highlight={searchQuery}
+                  highlightStyles={{ backgroundColor: "#ffe066" }}
+                >
+                  {task.assignee}
+                </Highlight>
               </Group>
-              <Group spacing="md" className="task-item-actions">
+
+              <div className="task-item-meta">
                 <Group spacing="xs">
                   {task.isCompleted && (
                     <Badge size="xs" color="green">
@@ -180,23 +186,28 @@ export const TaskItem = observer(
                   <Text size="xs" c="dimmed">
                     Due: {formatDate(task.dueDate)}
                   </Text>
-                  <Text size="xs" c="dimmed">
-                    Priority:
-                  </Text>
-                  <Highlight
-                    component={Badge}
-                    size="xs"
-                    color={
-                      priorityColors[
-                        task.priority as keyof typeof priorityColors
-                      ]
-                    }
-                    highlight={searchQuery}
-                    highlightStyles={{ backgroundColor: "#ffe066" }}
-                  >
-                    {task.priority}
-                  </Highlight>
+                  <Group spacing="xs" noWrap>
+                    <Text size="xs" c="dimmed">
+                      Priority:
+                    </Text>
+                    <Highlight
+                      component={Badge}
+                      size="xs"
+                      color={
+                        priorityColors[
+                          task.priority as keyof typeof priorityColors
+                        ]
+                      }
+                      highlight={searchQuery}
+                      highlightStyles={{ backgroundColor: "#ffe066" }}
+                    >
+                      {task.priority}
+                    </Highlight>
+                  </Group>
                 </Group>
+              </div>
+
+              <div className="task-item-actions">
                 <Button
                   size="xs"
                   variant="subtle"
@@ -205,9 +216,9 @@ export const TaskItem = observer(
                 >
                   Delete
                 </Button>
-              </Group>
-            </Group>
-          </Stack>
+              </div>
+            </div>
+          </Group>
         </Paper>
 
         <Modal
@@ -215,6 +226,7 @@ export const TaskItem = observer(
           onClose={() => setDeleteModalOpen(false)}
           title="Confirm Delete"
           size="sm"
+          centered
         >
           <Stack>
             <Text size="sm">Are you sure you want to delete this task?</Text>

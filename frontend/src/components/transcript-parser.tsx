@@ -355,7 +355,7 @@ export const TranscriptParser = observer(() => {
           marginTop: "1rem",
           paddingRight: "8px",
         }}
-        className="custom-scroll"
+        className="custom-scroll transcript-tasks-container"
       >
         {taskStore.parsedTranscriptTasks.length > 0 && (
           <Paper p="md" withBorder style={{ backgroundColor: "#f8f9fa" }}>
@@ -364,13 +364,40 @@ export const TranscriptParser = observer(() => {
                 Generated Tasks ({taskStore.parsedTranscriptTasks.length}):
               </Text>
               {taskStore.parsedTranscriptTasks.map((task, index) => (
-                <Paper key={index} p="xs" withBorder className="task-item">
-                  <Stack className="task-item-content">
-                    <Text size="sm">Description: {task.description}</Text>
-                    <Text size="sm">Assignee: {task.assignee}</Text>
-                    <Text size="sm">Due Date: {formatDate(task.dueDate)}</Text>
-                    <Text size="sm">Priority: {task.priority || "P3"}</Text>
-                    <Group className="task-form-buttons">
+                <Paper
+                  key={index}
+                  p="xs"
+                  withBorder
+                  className="transcript-task-item"
+                >
+                  <div className="transcript-task-content">
+                    <div className="transcript-task-info">
+                      <div className="transcript-task-field transcript-task-description">
+                        <Text size="sm" fw={500}>
+                          Description:
+                        </Text>
+                        <Text size="sm">{task.description}</Text>
+                      </div>
+                      <div className="transcript-task-field">
+                        <Text size="sm" fw={500}>
+                          Assignee:
+                        </Text>
+                        <Text size="sm">{task.assignee}</Text>
+                      </div>
+                      <div className="transcript-task-field">
+                        <Text size="sm" fw={500}>
+                          Due:
+                        </Text>
+                        <Text size="sm">{formatDate(task.dueDate)}</Text>
+                      </div>
+                      <div className="transcript-task-field">
+                        <Text size="sm" fw={500}>
+                          Priority:
+                        </Text>
+                        <Text size="sm">{task.priority || "P3"}</Text>
+                      </div>
+                    </div>
+                    <Group className="transcript-task-buttons">
                       <Button
                         onClick={() => handleAcceptTask(task)}
                         loading={loading}
@@ -388,7 +415,7 @@ export const TranscriptParser = observer(() => {
                         Reject Task
                       </Button>
                     </Group>
-                  </Stack>
+                  </div>
                 </Paper>
               ))}
             </Stack>

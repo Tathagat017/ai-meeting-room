@@ -44,6 +44,7 @@ export function Dashboard() {
             flexDirection: "column",
             overflow: "hidden",
           }}
+          keepMounted={false}
         >
           <Tabs.List className="tabs-container">
             <Tabs.Tab value="add-task">

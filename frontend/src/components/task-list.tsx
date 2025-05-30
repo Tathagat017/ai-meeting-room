@@ -36,6 +36,7 @@ import {
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
+import { useTasks } from "../hooks/use-tasks";
 
 export const TaskList = observer(() => {
   const [statusFilter, setStatusFilter] = useState<string>("all");
@@ -43,6 +44,7 @@ export const TaskList = observer(() => {
   const [dateFilter, setDateFilter] = useState<Date | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const { taskStore } = useStore();
+  const { data: tasks, isLoading } = useTasks();
 
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -116,36 +118,32 @@ export const TaskList = observer(() => {
   };
 
   const filteredTasks = useMemo(() => {
-    console.log("Recalculating filtered tasks"); // Debug log
-    let tasks = [...taskStore.Tasks];
+    const tasksToFilter = taskStore.Tasks || tasks;
+    let filtered = [...tasksToFilter];
 
-    // Apply status filter
     if (statusFilter === "completed") {
-      tasks = tasks.filter((task) => task.isCompleted);
+      filtered = filtered.filter((task) => task.isCompleted);
     } else if (statusFilter === "pending") {
-      tasks = tasks.filter((task) => !task.isCompleted);
+      filtered = filtered.filter((task) => !task.isCompleted);
     }
 
-    // Apply priority filter
     if (priorityFilter !== "all") {
-      tasks = tasks.filter((task) => task.priority === priorityFilter);
+      filtered = filtered.filter((task) => task.priority === priorityFilter);
     }
 
-    // Apply date filter
     if (dateFilter) {
       const filterDate = new Date(dateFilter);
       filterDate.setHours(0, 0, 0, 0);
-      tasks = tasks.filter((task) => {
+      filtered = filtered.filter((task) => {
         const taskDate = new Date(task.dueDate);
         taskDate.setHours(0, 0, 0, 0);
         return taskDate.getTime() === filterDate.getTime();
       });
     }
 
-    // Apply search filter
     if (searchQuery.trim()) {
       const query = searchQuery.toLowerCase();
-      tasks = tasks.filter(
+      filtered = filtered.filter(
         (task) =>
           task.description.toLowerCase().includes(query) ||
           task.assignee.toLowerCase().includes(query) ||
@@ -153,10 +151,17 @@ export const TaskList = observer(() => {
       );
     }
 
-    return tasks;
-  }, [taskStore.Tasks, statusFilter, priorityFilter, dateFilter, searchQuery]);
+    return filtered;
+  }, [
+    tasks,
+    taskStore.Tasks,
+    statusFilter,
+    priorityFilter,
+    dateFilter,
+    searchQuery,
+  ]);
 
-  if (taskStore.Loading) {
+  if (isLoading || taskStore.Loading) {
     return (
       <Paper p="md" withBorder className="glass" style={{ height: "100%" }}>
         <Stack align="center" py="xl">

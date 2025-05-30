@@ -20,17 +20,45 @@
 
 /* Responsive task items */
 .task-item {
-  flex-direction: column;
-  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  max-width: 100%;
 }
 
 .task-item-content {
   width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.task-item-drag {
+  flex: 0 0 auto;
+}
+
+.task-item-checkbox {
+  flex: 0 0 auto;
+}
+
+.task-item-main {
+  flex: 1 1 300px;
+  min-width: 0;
+}
+
+.task-item-meta {
+  flex: 1 1 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .task-item-actions {
-  width: 100%;
-  justify-content: flex-start !important;
+  flex: 0 0 auto;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
 }
 
 /* Responsive tabs */
@@ -88,6 +116,70 @@
     padding: 0.5rem;
   }
 
+  .task-item {
+    margin-bottom: 0.5rem;
+    padding: 0.75rem !important;
+  }
+
+  .task-item-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .task-item-main {
+    width: 100%;
+    padding-right: 0.5rem;
+  }
+
+  .task-item-meta {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+  }
+
+  .task-item-meta .mantine-Group-root {
+    flex-wrap: wrap;
+    gap: 0.5rem !important;
+  }
+
+  .task-item-actions {
+    width: 100%;
+    justify-content: flex-start;
+    margin-top: 0.5rem;
+  }
+
+  .task-item-checkbox {
+    margin-right: 0.5rem;
+  }
+
+  .task-item-drag {
+    margin-right: 0.5rem;
+  }
+
+  /* Make the first row (drag handle, checkbox, and description) stay in one line */
+  .task-item-content > div:first-child {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  /* Adjust text sizes for mobile */
+  .task-item .mantine-Text-root {
+    font-size: 0.85rem !important;
+  }
+
+  .task-item .mantine-Badge-root {
+    font-size: 0.75rem !important;
+    padding: 0 0.5rem;
+  }
+
+  /* Adjust button sizes */
+  .task-item .mantine-Button-root {
+    padding: 0.25rem 0.75rem;
+  }
+
   /* Navbar adjustments */
   .navbar {
     padding: 0 0.5rem !important;
@@ -139,6 +231,104 @@
   .transcript-textarea {
     min-height: 150px;
   }
+
+  .task-item-header {
+    margin-bottom: 0.5rem;
+  }
+
+  .task-item-details {
+    gap: 0.5rem;
+  }
+
+  .task-item-assignee {
+    min-width: 100%;
+  }
+
+  .task-item-meta .mantine-Group-root {
+    gap: 0.5rem;
+  }
+
+  /* Ensure text doesn't overflow on small screens */
+  .task-item-main {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+  }
+
+  .transcript-task-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.75rem;
+  }
+
+  .transcript-task-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .transcript-task-field {
+    width: 100%;
+  }
+
+  .transcript-task-description {
+    min-width: 0;
+  }
+
+  .transcript-task-buttons {
+    width: 100%;
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .transcript-task-buttons button {
+    flex: 1;
+  }
+
+  /* Container for transcript tasks */
+  .transcript-tasks-container {
+    max-height: 60vh;
+    overflow-y: auto;
+  }
+
+  .transcript-task-item {
+    margin-bottom: 0.5rem;
+    background-color: #fff;
+  }
+
+  .generated-task-details {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    max-height: 300px;
+    overflow-y: auto;
+  }
+
+  .generated-task-info {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .generated-task-field {
+    width: 100%;
+  }
+
+  .generated-task-field.description {
+    min-width: 0;
+  }
+
+  .generated-task-actions {
+    width: 100%;
+    justify-content: stretch;
+  }
+
+  .generated-task-actions button {
+    flex: 1;
+  }
 }
 
 /* Tablet and larger screens */
@@ -163,4 +353,94 @@
     animation: none !important;
     transition: none !important;
   }
+}
+
+/* Task item layout */
+.task-item-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.task-item-details {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.task-item-assignee {
+  flex: 1 1 auto;
+  min-width: 200px;
+}
+
+/* Transcript parser task items */
+.transcript-task-item {
+  margin-bottom: 0.5rem;
+}
+
+.transcript-task-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: nowrap;
+}
+
+.transcript-task-info {
+  display: flex;
+  flex: 1;
+  gap: 2rem;
+  align-items: center;
+}
+
+.transcript-task-field {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.transcript-task-description {
+  flex: 1;
+  min-width: 200px;
+}
+
+.transcript-task-buttons {
+  flex-shrink: 0;
+}
+
+/* Generated task details layout */
+.generated-task-details {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.generated-task-info {
+  display: flex;
+  flex: 1;
+  gap: 2rem;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.generated-task-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.generated-task-field.description {
+  flex: 1;
+  min-width: 200px;
+}
+
+.generated-task-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
 }
