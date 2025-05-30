@@ -4,8 +4,14 @@ A modern task management application that can parse natural language text and me
 
 ![image](https://github.com/user-attachments/assets/c23338fe-57c9-422a-8f43-7dfe8ebd8644)
 
+nlp string based generation of task
+![image](https://github.com/user-attachments/assets/a358f444-0e65-4088-9586-e0cd35cb840b)
+
+Task list management ( edit : mark as completed, delete, drag and drop to change order) ,  : 
 ![image](https://github.com/user-attachments/assets/de8119f0-f54a-4b57-af34-ad9e6b22e81c)
 
+
+Transcript based task generation , upload audio to generate , record audio to generate
 ![image](https://github.com/user-attachments/assets/fb783e88-f92e-490f-a09d-276552aea14d)
 
 ## Features
