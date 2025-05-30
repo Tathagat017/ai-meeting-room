@@ -8,7 +8,6 @@ A modern task management application that can parse natural language text and me
 
 ![image](https://github.com/user-attachments/assets/fb783e88-f92e-490f-a09d-276552aea14d)
 
-
 ## Features
 
 ### Task Management
@@ -62,6 +61,8 @@ A modern task management application that can parse natural language text and me
 - Node.js
 - Express.js
 - OpenAI API for natural language processing
+
+### DATABASE - database.json local file for saving data/editing (./backend/database.json) as project not to be deployed.
 
 ## Environment Setup
 
