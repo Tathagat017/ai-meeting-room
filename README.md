@@ -6,7 +6,8 @@ A modern task management application that can parse natural language text and me
 
 
 nlp string based generation of task
-![image](https://github.com/user-attachments/assets/de2ab003-2ff2-4bf6-a4a3-60576a297d5f)
+![image](https://github.com/user-attachments/assets/8aec1b97-fb76-43da-a132-296668686336)
+
 
 
 Task list management ( edit : mark as completed, delete, drag and drop to change order) ,  : 
