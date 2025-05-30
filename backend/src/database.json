@@ -1,0 +1,74 @@
+{
+  "tasks": [
+    {
+      "id": "e3eacbe6-a9a2-4685-85da-33346846bdd9",
+      "description": "Provide the design mockups",
+      "assignee": "Priya",
+      "dueDate": "2022-09-30T17:00:00.000Z",
+      "priority": "P3",
+      "createdAt": "2025-05-30T07:54:04.800Z",
+      "updatedAt": "2025-05-30T10:04:47.007Z",
+      "isCompleted": false
+    },
+    {
+      "id": "eceffa66-6b37-4da2-86a9-baa8be8a3f1b",
+      "description": "Handle the bug fixes",
+      "assignee": "Alex",
+      "dueDate": "2022-09-30T23:59:59.999Z",
+      "priority": "P3",
+      "createdAt": "2025-05-30T07:54:04.800Z",
+      "updatedAt": "2025-05-30T10:04:48.864Z",
+      "isCompleted": false
+    },
+    {
+      "id": "c6aa8665-6efd-479e-8ef4-b8eb292d7e7b",
+      "description": "Update documentation",
+      "assignee": "Sarah",
+      "dueDate": "2022-10-03T23:59:59.999Z",
+      "priority": "P3",
+      "createdAt": "2025-05-30T07:54:04.800Z",
+      "updatedAt": "2025-05-30T07:54:04.800Z",
+      "isCompleted": false
+    },
+    {
+      "id": "439713ad-72d4-4fcf-96dc-9d06aaf2d5ae",
+      "description": "Take the landing page",
+      "assignee": "Aman",
+      "dueDate": "2022-10-06T22:00:00.000Z",
+      "priority": "P3",
+      "createdAt": "2025-05-30T08:41:54.647Z",
+      "updatedAt": "2025-05-30T08:41:54.647Z",
+      "isCompleted": false
+    },
+    {
+      "id": "3e8b67ad-043a-4593-938d-b3734dc7575e",
+      "description": "Address the login page issue",
+      "assignee": "Mike",
+      "dueDate": "2022-09-23T23:59:59.999Z",
+      "priority": "P2",
+      "createdAt": "2025-05-30T07:54:04.800Z",
+      "updatedAt": "2025-05-30T10:04:18.978Z",
+      "isCompleted": false
+    },
+    {
+      "id": "3626dc11-942d-49a9-b948-9c411cdcce8e",
+      "description": "Finish track1",
+      "assignee": "Rohan",
+      "dueDate": "2022-10-25T23:59:59.999Z",
+      "priority": "P3",
+      "createdAt": "2025-05-30T09:20:56.528Z",
+      "updatedAt": "2025-05-30T09:20:56.528Z",
+      "isCompleted": false
+    },
+    {
+      "id": "c767abb0-c8fc-4807-bef7-9998dbc08bd4",
+      "description": "Finish creating demo file",
+      "assignee": "Sinha",
+      "dueDate": "2022-12-14T23:59:59.999Z",
+      "priority": "P3",
+      "createdAt": "2025-05-30T09:26:11.098Z",
+      "updatedAt": "2025-05-30T09:26:11.098Z",
+      "isCompleted": false
+    }
+  ]
+}

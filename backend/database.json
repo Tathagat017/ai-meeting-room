@@ -1,0 +1,54 @@
+{
+  "tasks": [
+    {
+      "id": "e3eacbe6-a9a2-4685-85da-33346846bdd9",
+      "description": "Provide the design mockups",
+      "assignee": "Priya",
+      "dueDate": "2022-09-30T17:00:00.000Z",
+      "priority": "P3",
+      "createdAt": "2025-05-30T07:54:04.800Z",
+      "updatedAt": "2025-05-30T10:33:01.298Z",
+      "isCompleted": false
+    },
+    {
+      "id": "3e8b67ad-043a-4593-938d-b3734dc7575e",
+      "description": "Address the login page issue",
+      "assignee": "Mike",
+      "dueDate": "2022-09-23T23:59:59.999Z",
+      "priority": "P2",
+      "createdAt": "2025-05-30T07:54:04.800Z",
+      "updatedAt": "2025-05-30T10:27:14.615Z",
+      "isCompleted": false
+    },
+    {
+      "id": "439713ad-72d4-4fcf-96dc-9d06aaf2d5ae",
+      "description": "Take the landing page",
+      "assignee": "Aman",
+      "dueDate": "2022-10-06T22:00:00.000Z",
+      "priority": "P3",
+      "createdAt": "2025-05-30T08:41:54.647Z",
+      "updatedAt": "2025-05-30T10:26:37.572Z",
+      "isCompleted": false
+    },
+    {
+      "id": "ca27c9a7-e4f4-464c-a0cf-e2dfeb18c822",
+      "description": "Fix server crash",
+      "assignee": "DevOps team",
+      "dueDate": "2025-05-30T12:30:00.000Z",
+      "priority": "P1",
+      "createdAt": "2025-05-30T11:27:17.601Z",
+      "updatedAt": "2025-05-30T11:27:49.180Z",
+      "isCompleted": false
+    },
+    {
+      "id": "420601f9-c0fd-489d-8de5-9988d7749df6",
+      "description": "Don't forget weekly sync",
+      "assignee": "Everyone",
+      "dueDate": "2025-05-30T04:00:00.000Z",
+      "priority": "P3",
+      "createdAt": "2025-05-30T12:00:32.419Z",
+      "updatedAt": "2025-05-30T12:00:32.419Z",
+      "isCompleted": false
+    }
+  ]
+}

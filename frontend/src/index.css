@@ -1,0 +1,19 @@
+/* index.css */
+
+html,
+body,
+#root {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+}
+
+body {
+  font-family: sans-serif;
+  /* optional default background */
+}
+
+* {
+  box-sizing: border-box;
+}

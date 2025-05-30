@@ -1,0 +1,86 @@
+.glass {
+  background: rgba(255, 255, 255, 0.35); /* semi-transparent light */
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 18px;
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
+}
+
+[data-mantine-color-scheme="dark"] .glass {
+  background: rgba(34, 40, 49, 0.35); /* semi-transparent dark */
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
+}
+
+.dashboard-bg {
+  min-height: 100vh;
+  background: linear-gradient(to top, #c7e3f9 0%, #e4e7eb 100%);
+  /* Optional: add a subtle pattern or overlay for more depth */
+}
+
+[data-mantine-color-scheme="dark"] .dashboard-bg {
+  background: linear-gradient(to bottom, #232526 0%, #414345 100%);
+}
+
+.navbar {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+[data-mantine-color-scheme="dark"] .navbar {
+  background: rgba(26, 27, 30, 0.95) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Tab panel styles */
+.tab-panel {
+  height: 100%;
+  overflow: auto;
+  padding-right: 8px;
+}
+
+.tab-panel::-webkit-scrollbar {
+  width: 8px;
+}
+
+.tab-panel::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+
+.tab-panel::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.tab-panel::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* Custom scrollbar styles */
+.custom-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scroll::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* Hide scrollbar for Firefox */
+.custom-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0.05);
+}
