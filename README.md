@@ -55,27 +55,19 @@ A modern task management application that can parse natural language text and me
 - Node.js
 - Express.js
 - OpenAI API for natural language processing
-- Audio processing capabilities
-- RESTful API architecture
-
-## Prerequisites
-
-Before you begin, ensure you have the following installed:
-
-- Node.js (v14 or higher)
-- npm (v6 or higher)
-- Git
 
 ## Environment Setup
 
 1. Clone the repository:
 
 ```bash
-git clone <repository-url>
+git clone - https://github.com/Tathagat017/ai-meeting-room.git
 cd ai-meetings-to-do
 ```
 
 2. Create environment files:
+
+## Backend .env ( inside backend folder )
 
 For backend (./backend/.env):
 
@@ -84,10 +76,12 @@ PORT=8080
 OPENAI_API_KEY=your_openai_api_key
 ```
 
+## Frontend .env ( inside frontend folder )
+
 For frontend (./frontend/.env):
 
 ```
-VITE_API_BASE_URL=http://localhost:8080
+VITE_API_BASE_URL=http://localhost:8080 //port 8080 for backened server
 ```
 
 ## Installation
@@ -133,12 +127,10 @@ Required dependencies will be installed:
 
 ### Start the Backend Server
 
-```bash
+````bash
 cd backend
-npm run dev  # for development with nodemon
-# or
-npm start    # for production
-```
+npm run dev
+
 
 The backend server will start on http://localhost:8080
 
@@ -146,10 +138,10 @@ The backend server will start on http://localhost:8080
 
 ```bash
 cd frontend
-npm start
-```
+npm run dev
+````
 
-The frontend development server will start on http://localhost:3000 and will communicate with the backend on port 8080
+The frontend development server must communicate with the backend on port 8080
 
 ## API Endpoints
 
