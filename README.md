@@ -2,17 +2,21 @@
 
 A modern task management application that can parse natural language text and meeting transcripts to create structured tasks. The app supports voice recording, audio file uploads, and intelligent task parsing with timezone awareness (IST).
 
-![image](https://github.com/user-attachments/assets/c23338fe-57c9-422a-8f43-7dfe8ebd8644)
+![image](https://github.com/user-attachments/assets/93614114-5ffa-4edd-9946-caea129d1e36)
+
 
 nlp string based generation of task
-![image](https://github.com/user-attachments/assets/a358f444-0e65-4088-9586-e0cd35cb840b)
+![image](https://github.com/user-attachments/assets/de2ab003-2ff2-4bf6-a4a3-60576a297d5f)
+
 
 Task list management ( edit : mark as completed, delete, drag and drop to change order) ,  : 
-![image](https://github.com/user-attachments/assets/de8119f0-f54a-4b57-af34-ad9e6b22e81c)
+![image](https://github.com/user-attachments/assets/9b90f62d-6c81-4404-917c-c1052af6e584)
+
 
 
 Transcript based task generation , upload audio to generate , record audio to generate
-![image](https://github.com/user-attachments/assets/fb783e88-f92e-490f-a09d-276552aea14d)
+![image](https://github.com/user-attachments/assets/80d44c22-aafc-470d-a867-df5268d5b021)
+
 
 Responsive :
 
