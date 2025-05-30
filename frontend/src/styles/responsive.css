@@ -258,15 +258,14 @@
 
   .transcript-task-content {
     flex-direction: column;
-    align-items: flex-start;
-    gap: 0.75rem;
-    padding: 0.75rem;
+    gap: 1rem;
+    padding: 1rem;
   }
 
   .transcript-task-info {
+    display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
+    gap: 1rem;
     width: 100%;
   }
 
@@ -274,14 +273,20 @@
     width: 100%;
   }
 
-  .transcript-task-description {
-    min-width: 0;
+  .transcript-task-field .field-label {
+    font-size: var(--mantine-font-size-sm);
+  }
+
+  .transcript-task-field .field-value {
+    font-size: var(--mantine-font-size-sm);
   }
 
   .transcript-task-buttons {
     width: 100%;
-    display: flex;
-    gap: 0.5rem;
+    justify-content: flex-end;
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--mantine-color-gray-2);
   }
 
   .transcript-task-buttons button {
@@ -302,15 +307,16 @@
   .generated-task-details {
     flex-direction: column;
     align-items: stretch;
-    gap: 1rem;
-    max-height: 300px;
-    overflow-y: auto;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    padding-bottom: 4rem; /* Make space for the fixed buttons */
+    position: relative;
   }
 
   .generated-task-info {
     flex-direction: column;
-    align-items: stretch;
     gap: 1rem;
+    align-items: stretch;
   }
 
   .generated-task-field {
@@ -322,11 +328,56 @@
   }
 
   .generated-task-actions {
-    width: 100%;
-    justify-content: stretch;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+    padding: 0.75rem;
+    background-color: var(--mantine-color-white);
+    border-top: 1px solid var(--mantine-color-gray-2);
   }
 
-  .generated-task-actions button {
+  .generated-task-actions .mantine-ActionIcon-root {
+    width: 42px;
+    height: 42px;
+  }
+
+  .transcript-results-section {
+    max-height: calc(100vh - 400px);
+  }
+
+  .transcript-task-item {
+    margin-bottom: 0.75rem;
+  }
+
+  .transcript-task-content {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .transcript-task-info {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.75rem;
+  }
+
+  .transcript-task-field {
+    width: 100%;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .transcript-task-buttons {
+    width: 100%;
+    margin-top: 0.75rem;
+    justify-content: flex-end;
+  }
+
+  .transcript-task-buttons button {
     flex: 1;
   }
 }
@@ -382,24 +433,36 @@
 
 .transcript-task-content {
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   gap: 1rem;
-  flex-wrap: nowrap;
+  padding: 1rem;
 }
 
 .transcript-task-info {
-  display: flex;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.5fr 1fr;
+  gap: 1.5rem;
   flex: 1;
-  gap: 2rem;
-  align-items: center;
+  align-items: start;
 }
 
 .transcript-task-field {
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.transcript-task-field .field-label {
+  color: var(--mantine-color-gray-6);
+  font-size: var(--mantine-font-size-sm);
   white-space: nowrap;
+}
+
+.transcript-task-field .field-value {
+  font-weight: 500;
+  font-size: var(--mantine-font-size-sm);
+  word-break: break-word;
 }
 
 .transcript-task-description {
@@ -408,6 +471,9 @@
 }
 
 .transcript-task-buttons {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
   flex-shrink: 0;
 }
 
@@ -418,6 +484,7 @@
   align-items: center;
   gap: 2rem;
   padding: 1rem;
+  position: relative;
 }
 
 .generated-task-info {
@@ -441,6 +508,48 @@
 
 .generated-task-actions {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.75rem;
   flex-shrink: 0;
+}
+
+/* Transcript parser layout */
+.transcript-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.transcript-input-section {
+  flex: 0 0 auto;
+}
+
+.transcript-results-section {
+  flex: 1;
+  min-height: 0; /* Important for proper flex scrolling */
+  margin-top: 1rem;
+}
+
+.transcript-results-content {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.transcript-task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.transcript-task-buttons {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.transcript-task-buttons .mantine-ActionIcon-root {
+  transition: transform 0.2s ease;
+}
+
+.transcript-task-buttons .mantine-ActionIcon-root:hover {
+  transform: scale(1.1);
 }

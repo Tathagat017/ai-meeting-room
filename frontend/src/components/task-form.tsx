@@ -9,9 +9,14 @@ import {
   Alert,
   Box,
   Tooltip,
+  ActionIcon,
 } from "@mantine/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCheck,
+  faQuestionCircle,
+  faTimes,
+} from "@fortawesome/free-solid-svg-icons";
 import { useStore } from "../hooks/use-store";
 import { observer } from "mobx-react-lite";
 import { ParsedTaskData } from "../types/tasks";
@@ -140,6 +145,7 @@ export const TaskForm = observer(() => {
           <Button
             onClick={handleParse}
             loading={loading}
+            size="xs"
             disabled={taskStore.ParsedIndividualTasks.length > 0}
           >
             Generate Task
@@ -200,22 +206,27 @@ export const TaskForm = observer(() => {
                 </div>
               </div>
               <div className="generated-task-actions">
-                <Button
-                  onClick={() => handleAccept(task)}
-                  loading={loading}
-                  color="green"
-                  size="sm"
-                >
-                  Add Task
-                </Button>
-                <Button
-                  onClick={handleReject}
-                  variant="light"
-                  color="red"
-                  size="sm"
-                >
-                  Reject task
-                </Button>
+                <Tooltip label="Accept Task">
+                  <ActionIcon
+                    onClick={() => handleAccept(task)}
+                    loading={loading}
+                    size="lg"
+                    variant="filled"
+                    color="green"
+                  >
+                    <FontAwesomeIcon icon={faCheck} />
+                  </ActionIcon>
+                </Tooltip>
+                <Tooltip label="Reject Task">
+                  <ActionIcon
+                    onClick={handleReject}
+                    size="lg"
+                    variant="light"
+                    color="red"
+                  >
+                    <FontAwesomeIcon icon={faTimes} />
+                  </ActionIcon>
+                </Tooltip>
               </div>
             </div>
           </Paper>

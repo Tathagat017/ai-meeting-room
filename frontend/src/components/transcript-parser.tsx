@@ -10,7 +10,6 @@ import {
   FileButton,
   ActionIcon,
   Tooltip,
-  Box,
 } from "@mantine/core";
 import { useStore } from "../hooks/use-store";
 import { observer } from "mobx-react-lite";
@@ -24,6 +23,8 @@ import {
   faCircleInfo,
   faArrowRight,
   faQuestionCircle,
+  faCheck,
+  faTimes,
 } from "@fortawesome/free-solid-svg-icons";
 import { useAudioRecorder } from "../hooks/use-audio-recorder";
 import { AudioService } from "../services/audio-service";
@@ -211,217 +212,222 @@ export const TranscriptParser = observer(() => {
     <Paper
       p="md"
       withBorder
-      className="glass"
+      className="glass transcript-container"
       style={{
         height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        overflow: "hidden",
       }}
     >
-      <Stack spacing="md" style={{ flex: "0 0 auto" }}>
-        <Group position="apart" className="transcript-header">
-          <Text size="lg" fw={500}>
-            Add tasks from text transcript / record live audio / upload audio
-          </Text>
-          <Group spacing="xs" className="transcript-actions">
-            <Tooltip
-              label="Supported audio formats: WAV, MP3, MPEG, WebM. Max file size: 10MB"
-              position="bottom"
-              multiline
-              width={220}
-            >
-              <ActionIcon variant="subtle" color="gray">
-                <FontAwesomeIcon icon={faCircleInfo} />
-              </ActionIcon>
-            </Tooltip>
-            <Tooltip
-              label={
-                isRecording
-                  ? "Stop Recording"
-                  : "Start Recording (Max 5 minutes)"
-              }
-              position="bottom"
-            >
-              <ActionIcon
-                variant="filled"
-                color={isRecording ? "red" : "blue"}
-                onClick={isRecording ? stopRecording : startRecording}
-                loading={loading}
+      <div className="transcript-input-section">
+        <Stack spacing="md">
+          <Group position="apart" className="transcript-header">
+            <Text size="lg" fw={500}>
+              Add tasks from text transcript / record live audio / upload audio
+            </Text>
+            <Group spacing="xs" className="transcript-actions">
+              <Tooltip
+                label="Supported audio formats: WAV, MP3, MPEG, WebM. Max file size: 10MB"
+                position="bottom"
+                multiline
+                width={220}
+              >
+                <ActionIcon variant="subtle" color="gray">
+                  <FontAwesomeIcon icon={faCircleInfo} />
+                </ActionIcon>
+              </Tooltip>
+              <Tooltip
+                label={
+                  isRecording
+                    ? "Stop Recording"
+                    : "Start Recording (Max 5 minutes)"
+                }
+                position="bottom"
+              >
+                <ActionIcon
+                  variant="filled"
+                  color={isRecording ? "red" : "blue"}
+                  onClick={isRecording ? stopRecording : startRecording}
+                  loading={loading}
+                >
+                  <FontAwesomeIcon
+                    icon={isRecording ? faMicrophoneSlash : faMicrophone}
+                    size="sm"
+                  />
+                </ActionIcon>
+              </Tooltip>
+              <FileButton
+                onChange={handleFileUpload}
+                accept="audio/wav,audio/mp3,audio/mpeg,audio/webm"
+              >
+                {(props) => (
+                  <Tooltip label="Upload Audio File" position="bottom">
+                    <ActionIcon variant="filled" color="blue" {...props}>
+                      <FontAwesomeIcon icon={faUpload} size="sm" />
+                    </ActionIcon>
+                  </Tooltip>
+                )}
+              </FileButton>
+            </Group>
+          </Group>
+
+          {recordingError && (
+            <Alert title="Recording Error" color="red">
+              {recordingError}
+            </Alert>
+          )}
+
+          <div>
+            <Group spacing="xs" align="center" mb="xs">
+              <Text size="sm" fw={500}>
+                Enter meeting transcript or use audio input
+              </Text>
+              <Tooltip
+                label="Date format: DD/MM/YYYY (e.g., 15/06/2025 for 15th June 2025). Time format: 12-hour (4 am, 2 pm) or 24-hour (16:00). All times are in IST."
+                multiline
+                width={300}
+                withArrow
               >
                 <FontAwesomeIcon
-                  icon={isRecording ? faMicrophoneSlash : faMicrophone}
-                  size="sm"
+                  icon={faQuestionCircle}
+                  style={{ color: "#868e96", cursor: "help", fontSize: "14px" }}
                 />
-              </ActionIcon>
-            </Tooltip>
-            <FileButton
-              onChange={handleFileUpload}
-              accept="audio/wav,audio/mp3,audio/mpeg,audio/webm"
-            >
-              {(props) => (
-                <Tooltip label="Upload Audio File" position="bottom">
-                  <ActionIcon variant="filled" color="blue" {...props}>
-                    <FontAwesomeIcon icon={faUpload} size="sm" />
-                  </ActionIcon>
-                </Tooltip>
-              )}
-            </FileButton>
-          </Group>
-        </Group>
+              </Tooltip>
+            </Group>
+            <Textarea
+              className="form-input transcript-textarea"
+              placeholder="e.g., Aman you take the landing page by 15/06/2025 10pm. Rajeev you take care of client follow-up by Wednesday."
+              value={transcript}
+              onChange={(e) => setTranscript(e.target.value)}
+              minRows={4}
+              size="md"
+            />
+          </div>
 
-        {recordingError && (
-          <Alert title="Recording Error" color="red">
-            {recordingError}
-          </Alert>
-        )}
-
-        <div>
-          <Group spacing="xs" align="center" mb="xs">
-            <Text size="sm" fw={500}>
-              Enter meeting transcript or use audio input
-            </Text>
-            <Tooltip
-              label="Date format: DD/MM/YYYY (e.g., 15/06/2025 for 15th June 2025). Time format: 12-hour (4 am, 2 pm) or 24-hour (16:00). All times are in IST."
-              multiline
-              width={300}
-              withArrow
-            >
-              <FontAwesomeIcon
-                icon={faQuestionCircle}
-                style={{ color: "#868e96", cursor: "help", fontSize: "14px" }}
-              />
-            </Tooltip>
-          </Group>
-          <Textarea
-            className="form-input transcript-textarea"
-            placeholder="e.g., Aman you take the landing page by 15/06/2025 10pm. Rajeev you take care of client follow-up by Wednesday."
-            value={transcript}
-            onChange={(e) => setTranscript(e.target.value)}
-            minRows={4}
-            size="md"
-          />
-        </div>
-
-        <Group className="task-form-buttons">
-          <Button
-            onClick={handleParse}
-            loading={loading}
-            disabled={
-              taskStore.parsedTranscriptTasks.length > 0 || !transcript.trim()
-            }
-            rightIcon={<FontAwesomeIcon icon={faArrowRight} />}
-          >
-            Generate tasks from transcript
-          </Button>
-          {taskStore.parsedTranscriptTasks.length > 0 && (
-            <>
-              <Button onClick={handleAcceptAll} loading={loading} color="green">
-                Accept All Tasks
-              </Button>
-              <Button onClick={handleRejectAll} variant="light" color="red">
-                Reject All Tasks
-              </Button>
-            </>
-          )}
-        </Group>
-
-        {error && (
-          <Alert title="Error" color="red">
-            {error}
-          </Alert>
-        )}
-
-        {audioBlob && (
           <Group className="task-form-buttons">
             <Button
-              onClick={handleRecordingComplete}
+              onClick={handleParse}
               loading={loading}
-              color="blue"
+              disabled={
+                taskStore.parsedTranscriptTasks.length > 0 || !transcript.trim()
+              }
+              rightIcon={<FontAwesomeIcon icon={faArrowRight} />}
             >
-              Transcribe Recording
+              Generate tasks from transcript
             </Button>
-            <Button onClick={resetRecording} variant="light">
-              Discard Recording
-            </Button>
-          </Group>
-        )}
-      </Stack>
-
-      <Box
-        style={{
-          flex: 1,
-          overflowY: "auto",
-          marginTop: "1rem",
-          paddingRight: "8px",
-        }}
-        className="custom-scroll transcript-tasks-container"
-      >
-        {taskStore.parsedTranscriptTasks.length > 0 && (
-          <Paper p="md" withBorder style={{ backgroundColor: "#f8f9fa" }}>
-            <Stack spacing="md">
-              <Text size="sm" fw={500}>
-                Generated Tasks ({taskStore.parsedTranscriptTasks.length}):
-              </Text>
-              {taskStore.parsedTranscriptTasks.map((task, index) => (
-                <Paper
-                  key={index}
-                  p="xs"
-                  withBorder
-                  className="transcript-task-item"
+            {taskStore.parsedTranscriptTasks.length > 0 && (
+              <>
+                <Button
+                  onClick={handleAcceptAll}
+                  loading={loading}
+                  color="green"
+                  size="xs"
                 >
-                  <div className="transcript-task-content">
-                    <div className="transcript-task-info">
-                      <div className="transcript-task-field transcript-task-description">
-                        <Text size="sm" fw={500}>
-                          Description:
-                        </Text>
-                        <Text size="sm">{task.description}</Text>
+                  Accept All Tasks
+                </Button>
+                <Button
+                  onClick={handleRejectAll}
+                  variant="light"
+                  color="red"
+                  size="xs"
+                >
+                  Reject All Tasks
+                </Button>
+              </>
+            )}
+          </Group>
+
+          {error && (
+            <Alert title="Error" color="red">
+              {error}
+            </Alert>
+          )}
+
+          {audioBlob && (
+            <Group className="task-form-buttons">
+              <Button
+                onClick={handleRecordingComplete}
+                loading={loading}
+                color="blue"
+              >
+                Transcribe Recording
+              </Button>
+              <Button onClick={resetRecording} variant="light">
+                Discard Recording
+              </Button>
+            </Group>
+          )}
+        </Stack>
+      </div>
+
+      <div className="transcript-results-section">
+        <div className="transcript-results-content">
+          {taskStore.parsedTranscriptTasks.length > 0 && (
+            <Paper p="md" withBorder style={{ backgroundColor: "#f8f9fa" }}>
+              <Stack spacing="md" className="transcript-task-list">
+                <Text size="sm" fw={500}>
+                  Generated Tasks ({taskStore.parsedTranscriptTasks.length}):
+                </Text>
+                {taskStore.parsedTranscriptTasks.map((task, index) => (
+                  <Paper
+                    key={index}
+                    withBorder
+                    className="transcript-task-item"
+                  >
+                    <div className="transcript-task-content">
+                      <div className="transcript-task-info">
+                        <div className="transcript-task-field">
+                          <Text className="field-label">Description</Text>
+                          <Text className="field-value">
+                            {task.description}
+                          </Text>
+                        </div>
+                        <div className="transcript-task-field">
+                          <Text className="field-label">Assignee</Text>
+                          <Text className="field-value">{task.assignee}</Text>
+                        </div>
+                        <div className="transcript-task-field">
+                          <Text className="field-label">Due Date</Text>
+                          <Text className="field-value">
+                            {formatDate(task.dueDate)}
+                          </Text>
+                        </div>
+                        <div className="transcript-task-field">
+                          <Text className="field-label">Priority</Text>
+                          <Text className="field-value">
+                            {task.priority || "P3"}
+                          </Text>
+                        </div>
                       </div>
-                      <div className="transcript-task-field">
-                        <Text size="sm" fw={500}>
-                          Assignee:
-                        </Text>
-                        <Text size="sm">{task.assignee}</Text>
-                      </div>
-                      <div className="transcript-task-field">
-                        <Text size="sm" fw={500}>
-                          Due:
-                        </Text>
-                        <Text size="sm">{formatDate(task.dueDate)}</Text>
-                      </div>
-                      <div className="transcript-task-field">
-                        <Text size="sm" fw={500}>
-                          Priority:
-                        </Text>
-                        <Text size="sm">{task.priority || "P3"}</Text>
+                      <div className="transcript-task-buttons">
+                        <Tooltip label="Accept Task">
+                          <ActionIcon
+                            onClick={() => handleAcceptTask(task)}
+                            loading={loading}
+                            size="lg"
+                            variant="filled"
+                            color="green"
+                          >
+                            <FontAwesomeIcon icon={faCheck} />
+                          </ActionIcon>
+                        </Tooltip>
+                        <Tooltip label="Reject Task">
+                          <ActionIcon
+                            onClick={() => handleRejectTask(task)}
+                            size="lg"
+                            variant="light"
+                            color="red"
+                          >
+                            <FontAwesomeIcon icon={faTimes} />
+                          </ActionIcon>
+                        </Tooltip>
                       </div>
                     </div>
-                    <Group className="transcript-task-buttons">
-                      <Button
-                        onClick={() => handleAcceptTask(task)}
-                        loading={loading}
-                        size="xs"
-                        color="green"
-                      >
-                        Accept Task
-                      </Button>
-                      <Button
-                        onClick={() => handleRejectTask(task)}
-                        variant="light"
-                        size="xs"
-                        color="red"
-                      >
-                        Reject Task
-                      </Button>
-                    </Group>
-                  </div>
-                </Paper>
-              ))}
-            </Stack>
-          </Paper>
-        )}
-      </Box>
+                  </Paper>
+                ))}
+              </Stack>
+            </Paper>
+          )}
+        </div>
+      </div>
     </Paper>
   );
 });
