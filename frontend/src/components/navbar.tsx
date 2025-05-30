@@ -1,5 +1,6 @@
 import { Group, Title, Paper } from "@mantine/core";
 import Logo from "../assets/logo.jpg";
+import "../styles/responsive.css";
 
 export function Navbar() {
   return (
@@ -21,11 +22,12 @@ export function Navbar() {
           <img
             src={Logo}
             alt="Logo"
-            width={40}
-            height={40}
-            style={{ borderRadius: "50%" }}
+            className="navbar-logo"
+            style={{ borderRadius: "50%", width: "40px", height: "40px" }}
           />
-          <Title order={3}> AI Task Manager</Title>
+          <Title order={3} className="navbar-title">
+            AI Task Manager
+          </Title>
         </Group>
       </Group>
     </Paper>

@@ -16,6 +16,7 @@ import { useStore } from "../hooks/use-store";
 import { observer } from "mobx-react-lite";
 import { ParsedTaskData } from "../types/tasks";
 import "../styles/glass.css";
+import "../styles/responsive.css";
 import { notifications } from "@mantine/notifications";
 
 export const TaskForm = observer(() => {
@@ -100,7 +101,12 @@ export const TaskForm = observer(() => {
       p="md"
       withBorder
       className="glass"
-      style={{ height: "100%", display: "flex", flexDirection: "column" }}
+      style={{
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        overflow: "hidden",
+      }}
     >
       <Stack spacing="md" style={{ flex: "0 0 auto" }}>
         <div>
@@ -121,6 +127,7 @@ export const TaskForm = observer(() => {
             </Tooltip>
           </Group>
           <TextInput
+            className="form-input"
             placeholder="e.g., Finish landing page Aman by 15/06/2025 11pm"
             value={input}
             onChange={(e) => setInput(e.target.value)}
@@ -128,7 +135,7 @@ export const TaskForm = observer(() => {
           />
         </div>
 
-        <Group>
+        <Group className="task-form-buttons">
           <Button
             onClick={handleParse}
             loading={loading}
@@ -146,7 +153,12 @@ export const TaskForm = observer(() => {
       </Stack>
 
       <Box
-        style={{ flex: 1, overflowY: "auto", marginTop: "1rem" }}
+        style={{
+          flex: 1,
+          overflowY: "auto",
+          marginTop: "1rem",
+          paddingRight: "8px",
+        }}
         className="custom-scroll"
       >
         {taskStore.ParsedIndividualTasks.map((task, index) => (
@@ -155,8 +167,9 @@ export const TaskForm = observer(() => {
             p="md"
             withBorder
             style={{ backgroundColor: "#f8f9fa", marginBottom: "1rem" }}
+            className="task-item"
           >
-            <Stack>
+            <Stack className="task-item-content">
               <Text size="sm" fw={500}>
                 Generated Task Details:
               </Text>
@@ -164,7 +177,7 @@ export const TaskForm = observer(() => {
               <Text size="sm">Assignee: {task.assignee}</Text>
               <Text size="sm">Due Date: {formatDate(task.dueDate)}</Text>
               <Text size="sm">Priority: {task.priority || "P3"}</Text>
-              <Group>
+              <Group className="task-form-buttons">
                 <Button
                   onClick={() => handleAccept(task)}
                   loading={loading}

@@ -18,6 +18,7 @@ import { notifications } from "@mantine/notifications";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
 import { Task, UpdateTaskRequest } from "../types/tasks";
+import "../styles/responsive.css";
 
 interface TaskItemProps {
   task: Task;
@@ -117,9 +118,18 @@ export const TaskItem = observer(
 
     return (
       <>
-        <Paper p="md" withBorder ref={setNodeRef} style={style}>
+        <Paper
+          p="md"
+          withBorder
+          ref={setNodeRef}
+          style={style}
+          className="task-item"
+        >
           <Stack>
-            <Group style={{ justifyContent: "space-between" }}>
+            <Group
+              style={{ justifyContent: "space-between" }}
+              className="task-item-content"
+            >
               <Group>
                 <div {...attributes} {...listeners} style={{ cursor: "grab" }}>
                   <FontAwesomeIcon icon={faGripVertical} />
@@ -160,7 +170,7 @@ export const TaskItem = observer(
                   </Group>
                 </div>
               </Group>
-              <Group spacing="md">
+              <Group spacing="md" className="task-item-actions">
                 <Group spacing="xs">
                   {task.isCompleted && (
                     <Badge size="xs" color="green">
@@ -208,7 +218,7 @@ export const TaskItem = observer(
         >
           <Stack>
             <Text size="sm">Are you sure you want to delete this task?</Text>
-            <Group position="right">
+            <Group position="right" className="task-form-buttons">
               <Button
                 size="xs"
                 variant="subtle"

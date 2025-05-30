@@ -28,6 +28,7 @@ import {
 import { useAudioRecorder } from "../hooks/use-audio-recorder";
 import { AudioService } from "../services/audio-service";
 import "../styles/glass.css";
+import "../styles/responsive.css";
 
 export const TranscriptParser = observer(() => {
   const [transcript, setTranscript] = useState("");
@@ -211,14 +212,19 @@ export const TranscriptParser = observer(() => {
       p="md"
       withBorder
       className="glass"
-      style={{ height: "100%", display: "flex", flexDirection: "column" }}
+      style={{
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        overflow: "hidden",
+      }}
     >
       <Stack spacing="md" style={{ flex: "0 0 auto" }}>
-        <Group position="apart">
+        <Group position="apart" className="transcript-header">
           <Text size="lg" fw={500}>
             Add tasks from text transcript / record live audio / upload audio
           </Text>
-          <Group spacing="xs">
+          <Group spacing="xs" className="transcript-actions">
             <Tooltip
               label="Supported audio formats: WAV, MP3, MPEG, WebM. Max file size: 10MB"
               position="bottom"
@@ -288,6 +294,7 @@ export const TranscriptParser = observer(() => {
             </Tooltip>
           </Group>
           <Textarea
+            className="form-input transcript-textarea"
             placeholder="e.g., Aman you take the landing page by 15/06/2025 10pm. Rajeev you take care of client follow-up by Wednesday."
             value={transcript}
             onChange={(e) => setTranscript(e.target.value)}
@@ -296,7 +303,7 @@ export const TranscriptParser = observer(() => {
           />
         </div>
 
-        <Group>
+        <Group className="task-form-buttons">
           <Button
             onClick={handleParse}
             loading={loading}
@@ -326,7 +333,7 @@ export const TranscriptParser = observer(() => {
         )}
 
         {audioBlob && (
-          <Group>
+          <Group className="task-form-buttons">
             <Button
               onClick={handleRecordingComplete}
               loading={loading}
@@ -342,7 +349,12 @@ export const TranscriptParser = observer(() => {
       </Stack>
 
       <Box
-        style={{ flex: 1, overflowY: "auto", marginTop: "1rem" }}
+        style={{
+          flex: 1,
+          overflowY: "auto",
+          marginTop: "1rem",
+          paddingRight: "8px",
+        }}
         className="custom-scroll"
       >
         {taskStore.parsedTranscriptTasks.length > 0 && (
@@ -352,13 +364,13 @@ export const TranscriptParser = observer(() => {
                 Generated Tasks ({taskStore.parsedTranscriptTasks.length}):
               </Text>
               {taskStore.parsedTranscriptTasks.map((task, index) => (
-                <Paper key={index} p="xs" withBorder>
-                  <Stack>
+                <Paper key={index} p="xs" withBorder className="task-item">
+                  <Stack className="task-item-content">
                     <Text size="sm">Description: {task.description}</Text>
                     <Text size="sm">Assignee: {task.assignee}</Text>
                     <Text size="sm">Due Date: {formatDate(task.dueDate)}</Text>
                     <Text size="sm">Priority: {task.priority || "P3"}</Text>
-                    <Group>
+                    <Group className="task-form-buttons">
                       <Button
                         onClick={() => handleAcceptTask(task)}
                         loading={loading}

@@ -16,6 +16,7 @@ import { observer } from "mobx-react-lite";
 import "../styles/glass.css";
 import "react-datepicker/dist/react-datepicker.css";
 import "../styles/date-picker.css";
+import "../styles/responsive.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import DatePicker from "react-datepicker";
@@ -171,12 +172,17 @@ export const TaskList = observer(() => {
       p="md"
       withBorder
       className="glass"
-      style={{ height: "100%", display: "flex", flexDirection: "column" }}
+      style={{
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        overflow: "hidden",
+      }}
     >
       <Stack spacing="md" style={{ flex: "0 0 auto" }}>
-        <Group align="flex-end" noWrap>
+        <Group align="flex-end" className="task-filters" noWrap>
           <Select
-            style={{ width: "180px" }}
+            className="form-input"
             size="xs"
             label="Status Filter"
             value={statusFilter}
@@ -188,7 +194,7 @@ export const TaskList = observer(() => {
             ]}
           />
           <Select
-            style={{ width: "180px" }}
+            className="form-input"
             size="xs"
             label="Priority Filter"
             value={priorityFilter}
@@ -201,7 +207,7 @@ export const TaskList = observer(() => {
               { value: "P4", label: "P4 - Low" },
             ]}
           />
-          <div style={{ width: "180px" }}>
+          <div className="form-input">
             <Text size="xs" style={{ marginBottom: "0.5rem" }}>
               Date Filter
             </Text>
@@ -216,19 +222,23 @@ export const TaskList = observer(() => {
             />
           </div>
           <TextInput
+            className="form-input"
             size="xs"
-            label="Search Tasks"
-            placeholder="Search by description, assignee, or priority"
+            placeholder="Search tasks..."
             value={searchQuery}
-            onChange={(event) => setSearchQuery(event.currentTarget.value)}
+            onChange={(e) => setSearchQuery(e.target.value)}
             icon={<FontAwesomeIcon icon={faSearch} />}
-            style={{ flex: 1 }}
           />
         </Group>
       </Stack>
 
       <Box
-        style={{ flex: 1, overflowY: "auto", marginTop: "1rem" }}
+        style={{
+          flex: 1,
+          overflowY: "auto",
+          marginTop: "1rem",
+          paddingRight: "8px",
+        }}
         className="custom-scroll"
       >
         {!filteredTasks || filteredTasks.length === 0 ? (
@@ -245,7 +255,7 @@ export const TaskList = observer(() => {
               items={filteredTasks.map((task) => task.id)}
               strategy={verticalListSortingStrategy}
             >
-              <Stack>
+              <Stack spacing="md">
                 {filteredTasks.map((task) => (
                   <TaskItem
                     key={task.id}
